@@ -11,7 +11,7 @@ using PHMirador.API.Data;
 namespace PHMirador.API.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20230918231232_InitialDB")]
+    [Migration("20230919164639_InitialDB")]
     partial class InitialDB
     {
         /// <inheritdoc />
