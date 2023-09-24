@@ -24,5 +24,7 @@ namespace PHMirador.Shared.Entities
         public string Place { get; set; }
         [Required(ErrorMessage = "El campo {0} es obligatorio.")]
         public string Diary { get; set; }
+
+        public bool IsCompleted { get; set; } = false;
     }
 }

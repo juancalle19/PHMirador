@@ -1,0 +1,49 @@
+﻿@page "/meetings"
+@using PHMirador.Web.Repositories;
+@using PHMirador.Shared.Entities
+@inject IRepository repository
+
+
+<h3>MeetingsIndex</h3>
+
+<GenericList MyList="Meetings">
+    <Body>
+        <table class="table table-striped">
+        <thead>
+            <tr>
+                <th></th>
+                <th>Nombre Asamblea</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var meeting in Meetings!)
+            {
+                @if (!meeting.IsCompleted)
+                {
+                    <tr>
+                        <td>
+                            <a class="btn btn-warning">Editar</a>
+                            <button class="btn btn-danger">Borrar</button>
+                        </td>
+                        <td>
+                            @meeting.Name
+                        </td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+    </Body>
+</GenericList>
+
+
+@code {
+
+    public List<Meeting>? Meetings { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        var responseHttp = await repository.Get<List<Meeting>>("/api/meetings");
+        Meetings = responseHttp.Response;
+    }
+}
